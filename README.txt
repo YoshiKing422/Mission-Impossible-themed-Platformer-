@@ -33,3 +33,6 @@ Before you can run the project, make sure you have the following software instal
 
 ---
 
+## How to Open any Level during Play
+
+Use keys "1 - 9" to access those levels, use "0" for level 10, and use "q" or "Q" for the 11th level.
