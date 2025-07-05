@@ -31,7 +31,7 @@ Before you can run the project, make sure you have the following software instal
    - Modify or create new levels using the tileset provided.
    - Save your map and rerun the sketch in Processing to see your changes in action.
 
----
+--- Scroll down for more info!!!
 
 ## How to Open any Level during Play
 
