@@ -1,12 +1,12 @@
 // Importing Sound
 import processing.sound.*;
 
-SoundFile file;
+//SoundFile file;
 
 public int[][]map=new int[160][32];
 public int levelNumber = 0;
 ArrayList<Enemy> enemies = new ArrayList<>();
-String[] levelNames = new String[] {"lvl1.csv", "lvl2.csv", "lvl3.csv", "lvl4.csv", "lvl5.csv", "lvl6.csv", "lvl7.csv"};
+String[] levelNames = new String[] {"lvl1.csv", "lvl2.csv", "lvl3.csv", "lvl4.csv", "lvl5.csv", "lvl6.csv", "lvl7.csv", "lvl8.csv", "lvl9.csv", "lvl10.csv", "lvl11.csv"};
 PImage ground, spike, player, enemy, downSpike, finish, upb, down, lava, open;
 Player p;
 float scroll = 0;
@@ -32,9 +32,9 @@ void setup() {
   loadLevel(levelNumber);
 
   // Adding Sound
-  file = new SoundFile(this, "Mission.mp3");
+  //file = new SoundFile(this, "Mission.mp3");
   // TO DO: add loop in draw() which will play sound every 60*51 frames,
-  file.play();
+  //file.play();
 }
 void loadLevel(int level) {
   levelNumber = level;
@@ -55,7 +55,7 @@ void loadLevel(int level) {
 void draw() {
   sec+=1;
   if (sec == 51*60) {
-    file.play();
+    //file.play();
     sec=0;
   }
   if (home) {
@@ -132,7 +132,7 @@ void keyPressed() {
 
     //THIS IS WHERE THE PLAYER RESPAWNS
     p = new Player(0, 288, player);
-    file.stop();
+    //file.stop();
   }
 
   if (key == '1') {
@@ -155,6 +155,18 @@ void keyPressed() {
   }
   if (key == '7') {
     loadLevel(6);
+  }
+  if (key == '8') {
+    loadLevel(7);
+  }
+  if (key == '9') {
+    loadLevel(8);
+  }
+  if (key == '0') {
+    loadLevel(9);
+  }
+  if (key == 'q' || key== 'Q') {
+    loadLevel(10);
   }
   
   if (key == ' ' && home) {
