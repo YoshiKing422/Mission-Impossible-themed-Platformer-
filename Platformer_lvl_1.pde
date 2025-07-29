@@ -6,8 +6,9 @@ import processing.sound.*;
 public int[][]map=new int[160][32];
 public int levelNumber = 0;
 ArrayList<Enemy> enemies = new ArrayList<>();
-String[] levelNames = new String[] {"lvl1.csv", "lvl2.csv", "lvl3.csv", "lvl4.csv", "lvl5.csv", "lvl6.csv", "lvl7.csv", "lvl8.csv", "lvl9.csv", "lvl10.csv", "lvl11.csv"};
-PImage ground, spike, player, enemy, downSpike, finish, upb, down, lava, open;
+ArrayList<Penemy> penemies = new ArrayList<>();
+String[] levelNames = new String[] {"lvl1.csv", "lvl2.csv", "lvl3.csv", "lvl4.csv", "lvl5.csv", "lvl6.csv", "lvl7.csv", "lvl8.csv", "lvl9.csv", "lvl10.csv", "lvl11.csv", "lvl12.csv"};
+PImage ground, spike, player, enemy, downSpike, finish, upb, down, lava, open, penemy, benemy;
 Player p;
 float scroll = 0;
 int sec = 0;
@@ -26,6 +27,8 @@ void setup() {
   upb = loadImage("Up.png");
   down = loadImage("Down.png");
   lava = loadImage("Lava.png");
+  penemy = loadImage("Penemy.png");
+  benemy = loadImage("Benemy.png");
   open = loadImage("OpeningImage.png");
   map = parseCSV(levelNames[levelNumber]);
   p = new Player(32, 288, player);
@@ -40,12 +43,15 @@ void loadLevel(int level) {
   levelNumber = level;
   map = parseCSV(levelNames[levelNumber]);
   enemies = new ArrayList<Enemy>();
+  penemies = new ArrayList<Penemy>();
   scroll = 0;
   for (int i = 0; i < map.length; i++) {
     for (int j = 0; j < map[i].length; j++) {
       if (map[i][j] == 3) {
         enemies.add(new Enemy(j, i, enemy));
       }
+      if (map[i][j] == 11) {
+        penemies.add(new Penemy(j, i, penemy));}
     }
   }
   scroll = 0;
@@ -83,6 +89,11 @@ void draw() {
       e.move();
       e.draw(scroll);
     }
+    p.draw(scroll);
+    for (Penemy k : penemies) {
+      k.move();
+      k.draw(scroll);
+    }
 
 
 
@@ -108,6 +119,10 @@ void draw() {
           image(down, j*32 - scroll, i * 32);
         } else if (curtile == 8) {
           image(lava, j*32 - scroll, i * 32);
+        } else if (curtile == 11) {
+          image(penemy, j*32 - scroll, i * 32);
+        } else if (curtile == 12) {
+          image(benemy, j*32 - scroll, i * 32);
         }
       }
     }
@@ -167,6 +182,9 @@ void keyPressed() {
   }
   if (key == 'q' || key== 'Q') {
     loadLevel(10);
+  }
+  if (key == 'e' || key== 'E') {
+    loadLevel(11);
   }
   
   if (key == ' ' && home) {

@@ -143,6 +143,12 @@ class Player {
           scroll=0;
           p = new Player(0, 288, player);
         }
+      for (Penemy k : penemies) {
+        if (isColliding(x+vx, y+vy, 32, 32, e.x + e.vx, e.y, 32, 32)) {
+          scroll=0;
+          p = new Player(0, 288, player);
+        }
+      }
         
   
       }
