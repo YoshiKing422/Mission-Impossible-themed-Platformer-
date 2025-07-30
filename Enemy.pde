@@ -2,10 +2,10 @@ class Enemy {
   float vx, x, y, lb, rb;
   PImage sprite;
 
-  Enemy(int xtile, int ytile, PImage sprite) {
+  Enemy(int xtile, int ytile, PImage sprite, float vx) {
     x = xtile * 32;
     y = ytile * 32;
-    vx = 1.75 * neg1or1();
+    this.vx = vx * neg1or1();
     this.sprite= sprite;
     while (map[ytile + 1][xtile] == 0) {
       xtile -- ;

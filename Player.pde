@@ -134,6 +134,15 @@ class Player {
           
           }
         }
+        //water spike
+        if (map[ytile][xtile] == 9) {
+
+          if (isColliding(x, y, 32, 32, xtile*32 + 12, ytile *32 + 17, 7, 13)) {
+
+            scroll=0;
+            p = new Player(0, 288, player);
+          }
+        }
       }
       if (vy > 0)
         grounded = false;
@@ -143,13 +152,7 @@ class Player {
           scroll=0;
           p = new Player(0, 288, player);
         }
-      for (Penemy k : penemies) {
-        if (isColliding(x+vx, y+vy, 32, 32, e.x + e.vx, e.y, 32, 32)) {
-          scroll=0;
-          p = new Player(0, 288, player);
-        }
-      }
-        
+     
   
       }
     }
