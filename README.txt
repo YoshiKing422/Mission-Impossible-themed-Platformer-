@@ -31,8 +31,5 @@ Before you can run the project, make sure you have the following software instal
    - Modify or create new levels using the tileset provided.
    - Save your map and rerun the sketch in Processing to see your changes in action.
 
---- Scroll down for more info!!!
+---
 
-## How to Open any Level during Play
-
-Use keys "1 - 9" to access those levels, use "0" for level 10, and use "q" or "Q" for the 11th level.

@@ -1,7 +1,7 @@
 class Player {
   float x, y, vx, vy, xsign, ysign;
   PImage sprite;
-  boolean left = false, right = false, jump = false, grounded = true, jumping = false, ba = false, bouncing = false, fall = false;
+  boolean left = false, right = false, jump = false, grounded = true, jumping = false, ba = false, bouncing = false, fall = false, inWater= false;
 
 
   Player(float x, float y, PImage image) {
@@ -10,6 +10,7 @@ class Player {
     sprite = image;
   }
   void update() {
+    inWater = false;
     if (left) {
       vx=-5;
     } else if (right) {
@@ -17,11 +18,18 @@ class Player {
     } else if (!left && !right) {
       vx= 0;
     }
-    if (jump && grounded) {
-      vy = -7;
-      grounded = false;
-      jumping = true;
-    } else {
+    if (inWater) {
+  grounded = false; // Only set grounded to false if in water, after all checks
+}
+    if (jump && (grounded || inWater)) {
+  if (inWater) {
+    vy = -15; // stronger jump in water
+  } else {
+    vy = -7;
+  }
+  grounded = false;
+  jumping = true;
+} else {
       jumping = false;
     }
     if (jump && abs(vy) < 15) {
@@ -138,9 +146,23 @@ class Player {
         if (map[ytile][xtile] == 9) {
 
           if (isColliding(x, y, 32, 32, xtile*32 + 12, ytile *32 + 17, 7, 13)) {
-
+            vx*=0.85;
+            if (vy > 0) { // Only slow falling, not jumping
+      vy *= 0.93; // Try 0.93 for a gentler slow
+    }
+            inWater = true;
             scroll=0;
             p = new Player(0, 288, player);
+          }
+        }
+        // water block (10): slow player and make them fall (not grounded)
+        if (map[ytile][xtile] == 10) {
+          if (isColliding(x, y, 32, 32, xtile*32, ytile*32, 32, 32)) {
+            vx *= 0.85;
+            if (vy > 0) { // Only slow falling, not jumping
+      vy *= 0.93; // Try 0.93 for a gentler slow
+    }
+            inWater = true;
           }
         }
       }

@@ -85,7 +85,7 @@ void draw() {
 
 
     //Draw the
-    p.draw(scroll);
+    
     println(scroll);
     for (Enemy e : enemies) {
       e.move();
@@ -117,15 +117,17 @@ void draw() {
           image(down, j*32 - scroll, i * 32);
         } else if (curtile == 8) {
           image(lava, j*32 - scroll, i * 32);
-        } else if (curtile == 9) {
+        } if (curtile == 9) {
           image(ws, j*32 - scroll, i * 32);
-          //rect(j*32 - scroll + 12, i*32 + 17, 7,13);
         } else if (curtile == 10) {
           image(water, j*32 - scroll, i * 32);
-         
-        } 
+        }
       }
     }
+      // Now draw the player
+    p.draw(scroll);
+
+   
   }
 }
 
