@@ -1,7 +1,7 @@
 class Player {
   float x, y, vx, vy, xsign, ysign;
   PImage sprite;
-  boolean left = false, right = false, jump = false, grounded = true, jumping = false, ba = false, bouncing = false, fall = false, inWater= false;
+  boolean left = false, right = false, jump = false, grounded = true, jumping = false, ba = false, bouncing = false, fall = false, inWater= false, canSwim = true;
 
 
   Player(float x, float y, PImage image) {
@@ -21,6 +21,33 @@ class Player {
     if (inWater) {
   grounded = false; // Only set grounded to false if in water, after all checks
 }
+   /*if (inWater) {
+  if (jump && canSwim) {
+    vy = -10; // or -12, tweak for feel
+    println("Swim jump! vy set to", vy);
+    canSwim = false; // Prevent holding jump for infinite upward speed
+  }
+  if (!jump) {
+    canSwim = true; // Allow another swim jump when jump is released
+  }
+} else if (jump && grounded) {
+  vy = -7;
+  grounded = false;
+  jumping = true;
+} else {
+  jumping = false;
+}
+   if (inWater) {
+  if (jump) {
+    vy = -10; // or -12, tweak for feel
+  }
+} else if (jump && grounded) {
+  vy = -7;
+  grounded = false;
+  jumping = true;
+} else {
+  jumping = false;
+}
     if (jump && (grounded || inWater)) {
   if (inWater) {
     vy = -15; // stronger jump in water
@@ -29,12 +56,15 @@ class Player {
   }
   grounded = false;
   jumping = true;
-} else {
+}else {
       jumping = false;
     }
     if (jump && abs(vy) < 15) {
       vy -= 0.2;
-    }
+    }*/
+    if (!inWater && jump && abs(vy) < 15) {
+  vy -= 0.2;
+}
     vy +=.5;
 
     if (vx > 0)
@@ -163,6 +193,7 @@ class Player {
       vy *= 0.93; // Try 0.93 for a gentler slow
     }
             inWater = true;
+            break;
           }
         }
       }
@@ -178,6 +209,23 @@ class Player {
   
       }
     }
+    if (inWater) {
+  if (jump && canSwim) {
+    vy = -10; // or -12, tweak for feel
+    println("Swim jump! vy set to", vy);
+    canSwim = false; // Prevent holding jump for infinite upward speed
+  }
+  if (!jump) {
+    canSwim = true; // Allow another swim jump when jump is released
+  }
+} else if (jump && grounded) {
+  vy = -7;
+  grounded = false;
+  jumping = true;
+} else {
+  jumping = false;
+}
+    println("vy:", vy, "inWater:", inWater, "y:", y);
   }
   float move () {
     x+=vx;
