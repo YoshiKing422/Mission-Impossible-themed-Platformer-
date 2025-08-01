@@ -21,47 +21,8 @@ class Player {
     if (inWater) {
   grounded = false; // Only set grounded to false if in water, after all checks
 }
-   /*if (inWater) {
-  if (jump && canSwim) {
-    vy = -10; // or -12, tweak for feel
-    println("Swim jump! vy set to", vy);
-    canSwim = false; // Prevent holding jump for infinite upward speed
-  }
-  if (!jump) {
-    canSwim = true; // Allow another swim jump when jump is released
-  }
-} else if (jump && grounded) {
-  vy = -7;
-  grounded = false;
-  jumping = true;
-} else {
-  jumping = false;
-}
-   if (inWater) {
-  if (jump) {
-    vy = -10; // or -12, tweak for feel
-  }
-} else if (jump && grounded) {
-  vy = -7;
-  grounded = false;
-  jumping = true;
-} else {
-  jumping = false;
-}
-    if (jump && (grounded || inWater)) {
-  if (inWater) {
-    vy = -15; // stronger jump in water
-  } else {
-    vy = -7;
-  }
-  grounded = false;
-  jumping = true;
-}else {
-      jumping = false;
-    }
-    if (jump && abs(vy) < 15) {
-      vy -= 0.2;
-    }*/
+   
+
     if (!inWater && jump && abs(vy) < 15) {
   vy -= 0.2;
 }
@@ -85,7 +46,7 @@ class Player {
           //da block bruh
           if (map[ytile][xtile] == 0) {
 
-            //move you out of the x dir
+            ///move you out of the x dir
             if (isColliding(x + vx, y, 32, 32, xtile * 32, ytile * 32, 32, 32)) {
               int count = 0;
               while (count < 50 && !isColliding(x + xsign, y, 32, 32, xtile * 32, ytile * 32, 32, 32)) {
